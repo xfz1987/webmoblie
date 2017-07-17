@@ -1,0 +1,34 @@
+1.<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+
+2.设置viewport : 强制让文档的宽度与设备的宽度保持1:1，并且文档最大的宽度比例是1.0，且不允许用户点击屏幕放大浏览
+    <meta name = "viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+
+3.告诉设备忽略将页面中的数字识别为电话号码、不让 Android 手机识别邮箱
+    <meta name="format-detection" content="telephone=no,email=no"/>
+
+-------------------------------ios与andoid私有标签----------------------------------------------------
+1. 添加到主屏后的标题（IOS）
+  <meta name="apple-mobile-web-app-title" content="标题"/>
+
+2.启用 WebApp 全屏模式（IOS）
+  当网站添加到主屏幕后再点击进行启动时，可隐藏地址栏（从浏览器跳转或输入链接进入并没有此效果）
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <!-- iphone保存桌面应用,webapp -->
+  <meta name="apple-touch-fullscreen" content="yes"/>
+
+3.百度禁止转码
+  通过百度手机打开网页时，百度可能会对你的网页进行转码，往你页面贴上它的广告，非常之恶心。不过我们可以通过这个meta标签来禁止它
+  <meta name="Catch-Control" content="no-siteapp"/>
+
+4.设置状态栏的背景颜色（IOS）
+  设置状态栏的背景颜色，只有在"apple-mobile-web-app-capable" content="yes"时生效
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+
+---------------------------------viewport模板----------------------------------------
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+<meta name = "viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="format-detection" content="email=no"/>

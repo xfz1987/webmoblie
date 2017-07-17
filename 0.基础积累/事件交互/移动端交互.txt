@@ -1,0 +1,40 @@
+1.click : 300ms延迟呀，以后不用了
+
+2.tap
+  * 原理 : 在touchstart、touchend时记录时间、手指位置
+           在touchend时进行判断，如果手指位置为同一位置（或允许移动一个非常小的位移值）
+           且时间间隔较短(一般200ms)，且过程中未曾触发touchmove
+           即可认为触发了移动端的 'click'
+
+    Zepto.js移动框架库
+
+  * tap点透解决方案
+    * 使用缓动动画，过渡300ms的延迟
+    * 中间层dom元素的加入，让中间层接受这个穿透事件，稍后隐藏
+    * 上下都使用tap事件，但不可避免原生标签的click事件
+    * 改用Fastclick库，最新的zepto已经解决到这个bug了
+
+3.touch
+  touchstart  : 手指触摸屏幕时触发(已经有手指放在屏幕上不会触发)
+  touchmove   : 手指在屏幕上滑动，连续触发
+  touchend    : 手指离开屏幕时触发
+  touchcancel : 系统取消touch时触发(不常用)
+
+  属性:
+  e.touches      : 跟踪触摸操作的touch对象数组（touched[0].pageX/Y）
+                   cientX/Y 触摸目标在视口中的坐标
+                   pageX/Y  触摸目标在页面中的坐标
+                   screenX/y 触摸目标在屏幕中的坐标
+                   identifier 标识触摸的唯一ID
+                   target   触摸的DOM节点目标
+
+  targetTouches  : 特定时间目标的touch对象数组
+  changeTouches  : 上次触摸改变的touch对象数组
+
+
+* 局部滚动开启弹性滚动(Android不支持，使用iscroll)
+  body{
+    overflow:scroll;
+    -webkit-overflow-scrolling:touch;
+    -ms-overflow-style:-ms-autohiding-scrollbar;
+  }

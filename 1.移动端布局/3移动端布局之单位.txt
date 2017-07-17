@@ -1,0 +1,53 @@
+布局:单位
+  1 rem
+   rem是根据页面的根元素的font-size的一个相对的单位
+   例如：
+   html{font-size:14px;}   则1rem => 14px
+   .div{width:2rem;}       则width => 28px
+
+   【文字适配】
+   对于标题性的文字，使用rem处理
+   对于正文内容的文字，采用px来处理
+
+   【适应不同设备宽度】
+    在head引入 adaptive.js 框架（https://github.com/finance-sh/adaptive）
+    <script type="text/javascript" src="../js/adaptive.min.js"></script>
+    <script>
+        window['adaptive'].desinWidth = 640;
+        window['adaptive'].baseFont = 18;
+        window['adaptive'].init();
+    </script>
+    使用：元素实际长度/100 * 1rem
+    div{width:0.2rem;} 表示width为20px
+
+
+ 2 em
+   大小不固定 ,成为相对单位（子集相对于父级）
+   * 浏览器的默认字体大小是16px
+   * 如果元素自身没有设置字体大小，那么元素自身上的所有属性值如“boder、width、height、padding、margin、line-height”等值，我们都可以按下面的公式来计算
+   【公式】需要转换的像素值 ÷ 父元素的font-size = em值
+           16px = 1em; 14px = 0.875em; 12px = 0.75em; 10px = 0.625em
+           例如:body{font-size:62.5%} => 10px;
+                body > div{width:2.4em} => 2.4*10px = 24px
+   * 如果元素设置了字体大小，那么字体大小的转换依旧按上面计
+    【公式】需要转换的像素值 ÷ 父元素的font-size = em值
+                body>.test{font-size:1.2em;width:1em;}  => font-size: 1.2*10px = 12px
+
+   * 元素设置了字体大小，此元素的其他属性则不再相对于父级的font-size了，而是相对于本身的font-size值
+     【公式】需要转换的像素值 ÷ 元素自身的font-size = em值
+                body>.test{font-size:1.2em;width:1em;}
+                =>
+                   font-size: 1.2*10px = 12px;   当前元素字体大小 12px
+                   width: 1*12px = 12px;         因为当前em = 12px
+
+   * 但是这样也解决不了不同设备宽度的问题
+     与vw、vh配合使用
+
+ 3 vw、vh
+   vw：设备宽度 / 100, vh:设备高度 / 100
+   那么可以这么设置
+   body{font-size:1.5625vw;}//标准视口为640px,ipone5:1vw = 320/100 = 3.2px, 10px/3.2 = 3.125vw
+   body > div{width:2.4em} => 2.4*10px = 24px
+   div > h1{width:1.2em} => 1.2*10px = 12px
+   div > h2{font-size:12px;width:1.2em;} => 1.2 * 12px = 14.4px、
+

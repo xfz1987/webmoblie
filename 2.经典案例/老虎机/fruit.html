@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="format-detection" content="telephone=no"/>
+	<title>水果达人</title>
+  <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css">
+  <link rel="stylesheet" type="text/css" href="css/fruit.css">
+  <script type="text/javascript" src="js/require-2.3.2.min.js" data-main="js/fruit"></script>
+</head>
+<body>
+  <section data-role="page" id="fruit">
+    <div data-role="content">
+      <img class="flower" src="images/fruit_flower.png">
+      <img class="title" src="images/fruit_title.png">
+      <div class="fruit-pan">
+        <div class="roll roll_1" id="roll_1">
+          <div class="con"></div>
+        </div>
+        <div class="roll roll_2" id="roll_2">
+          <div class="con"></div>
+        </div>
+        <div class="roll roll_3" id="roll_3">
+          <div class="con" id="show-result"></div>
+        </div>
+        <p>开始摇奖</p>
+      </div>
+      <p class="chance-tip">您还有<span>0</span>次参与机会</p>
+      <div class="pazz clearfix">
+        <img class="pazz-set" src="images/fruit_pazz_item.png">
+        <figure>
+          <img src="images/fruit_pazz.png">
+          <dl>
+            <dt>一等奖</dt>
+            <dd>蓝牙耳机</dd>
+            <dd>电脑手机通用音响</dd>
+          </dl>
+        </figure>
+        <figure>
+          <img src="images/fruit_pazz.png">
+          <dl>
+            <dt>二等奖</dt>
+            <dd>蓝牙耳机</dd>
+            <dd>电脑手机通用音响</dd>
+          </dl>
+        </figure>
+        <figure>
+          <img src="images/fruit_pazz.png">
+          <dl>
+            <dt>三等奖</dt>
+            <dd>蓝牙耳机</dd>
+            <dd>电脑手机通用音响</dd>
+          </dl>
+        </figure>
+      </div>
+    </div>
+  </section>
+  
+  <div class="pop sorry">
+    <h1>没中奖～</h1>
+    <p>亲爱的～ 不要灰心！再接再厉！</p>
+    <img class="cry" src="images/gbird.png"/>
+    <button>我知道了</button>
+  </div>
+
+  <div class="pop greate">
+    <i>x</i>
+    <div class="result">一等奖</div>
+    <img class="gheader" src="images/gyellow.png">
+    <div class="gform">
+      <label>* 请您填写以下信息用于发放奖品</label>
+      <input type="text" id="gname" placeholder="请输入您的姓名">
+      <input type="tel" id="gtel" placeholder="请输入您的手机号码">
+      <button>提交</button>
+    </div>
+  </div>
+
+  <div class="mask"></div>
+</body>
+</html>

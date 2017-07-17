@@ -1,0 +1,54 @@
+* 响应式网页简介
+  * 概念:响应式/自适应网页设计，为改进移动互联网浏览体验而提出的概念
+         一个页面可以兼容各种终端，无须编写多个不同的版本
+  * 要求:
+       * (1) 流式网格布局(Fluid流式、流动式、液态)
+       * (2) 可伸缩的图片和文字
+       * (3) 使用 CSS Media Query技术，根据浏览设备的宽和高调用不同的CSS
+
+  * 使用:
+       * 声明view元标签（该）
+         <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable:no">
+     * viewport: 视口 手机中浏览器的显示窗口大小，一般要远大于手机屏幕大小，HTML中可以指定此视口的大小。
+       * width: 视口的宽度，可以取值为数值，或 device-width(设备的宽度)
+                响应式网页,应该将宽度设为设备的宽度
+       * height: 视口的高度，一般不指定
+       * initial-scale: 初始时的缩放倍率
+       * minimum-scale: 允许的最小缩放倍率
+       * maxmum-scale: 允许的最大缩放倍率
+       * user-scalable: 是否允许用户动手缩放,可取值 1/0/yes/no
+       * 注意:(1) 所有元素的宽不能是固定值，必须使用相对的宽度值(width:60% 或 width:auto)
+              (2) 字体不能使用绝对大小(px)，必须使用相对大小(em)
+              浏览器的默认字体大小为:16px,而一般网页的字体大小为14px,
+              则 body{font:normal 100% Helvetica,Arial,sans-serif;}
+                 h1{font-size:1.5em;}/*24px*/
+             small{font-size:0.875em;}/*14px*/
+          (3) 布局用的各个区块的位置都是浮动的，不是固定不变的
+              例:.main{float:right;width:70%} .leftBar{float:left;width:25%}
+          (4) 选择加载CSS：
+              * 根据浏览器的不同，加载不同的CSS文件
+                 <link href="xxx.css" rel="stylesheet" type="text/css" media="screen and (max-device-width:400px)">
+             <link href="xxx.css" rel="stylesheet" type="text/css" media="screen and (max-device-width:400px)">
+              * 同一个CSS文件中，根据不同的分辨率，选择应用不同的CSS规则（@media规则）
+                @media screen and (min-device-width:100px) and (max-device-width:400px){
+                .column{float:none;width:auto;}
+                #sidebar{display:none;}
+            }
+          (5) 图片的自适应(图片的自动缩放)
+              img{max-width:100%;} 可以缩小，但最大能到图片本身的大小
+              或者 根据客户端屏幕大小的不同,加载不同尺寸的图片
+
+          　　
+小窍门：如何清除浮动对后续元素造成的影响
+(1)添加一个新的<div style="clear:both"></div>
+(2)对容器元素使用CSS内容生成：
+   .container:after {
+           content: '';
+           display: block;
+           clear: both;
+   }
+
+
+
+
+

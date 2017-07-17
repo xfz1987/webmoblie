@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name = "viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="format-detection" content="email=no"/>
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/demo.css">
+</head>
+<body>
+    <ul id="container" class="img-container clearfix"></ul>
+    <div class="large animated fadeInDown" id="large_container" style="display:none">
+        <img id="large_img">
+    </div>
+
+    <script src="js/jquery-1.9.1.min.js"></script>
+    <script src="js/hammer.js"></script>
+    <script src="js/jquery.hammer.js"></script>
+
+    <script>
+        var total = 17;
+        var win = $(window);
+        var render = function(){
+            var winWidth = win.width();
+            var padding = 2;
+            var picWidth = Math.floor((winWidth - padding*3)/4);
+            var tmpl = '';
+            for(var i=1;i<=total;i++){
+                var p = padding;
+                if(i%4==1) p = 0;
+                //tmpl += '<li data-id="'+i+'" class="animated bounceIn" style="width:'+picWidth+'px;height:'+picWidth+'px;padding-left:'+p+'px;padding-top:'+padding+'px;"><img src="img/'+i+'.jpg"></li>';
+                //为了性能，img使用canvas
+                tmpl += '<li data-id="'+i+'" class="animated bounceIn" style="width:'+picWidth+'px;height:'+picWidth+'px;padding-left:'+p+'px;padding-top:'+padding+'px;"><canvas id="cvs_' + i +'"></canvas></li>';
+                var image = new Image();
+                image.index = i;
+                image.onload = function(){
+                    var cvs = $('#cvs_' + this.index)[0].getContext('2d');
+                    cvs.width = this.width;
+                    cvs.height = this.height;
+                    cvs.drawImage(this,0,0);
+                }
+                image.src = 'img/' + i + '.jpg';
+            }
+            $('#container').html(tmpl);
+        };
+        render();
+
+        var wImage = $('#large_img');
+        var domImage = wImage[0];
+
+        function loadImg(id,callback){
+            $('#container').css({height:win.height(),'overflow':'hidden'})
+            $('#large_container').css({
+                width:win.width(),
+                height:win.height()
+            }).show();
+            var imgsrc = 'img/'+id+'.large.jpg';
+            var image = new Image();
+            image.src = imgsrc;
+            image.onload = function(){
+                var w = this.width;//实际宽度
+                var h = this.height;
+                var winWidth = win.width();
+                var winHeight = win.height();
+
+                var realw = parseInt((winWidth - winHeight*w/h)/2);
+                var realh = parseInt((winHeight - winWidth*h/w)/2);
+
+                wImage.css('width','auto').css('height','auto');
+                wImage.css('padding-left','0px').css('padding-top','0px');
+                if(h/w>1.2){//竖图
+                    wImage.attr('src',imgsrc).css('height',winHeight).css('padding-left',realw+'px');;
+                }else{
+                    wImage.attr('src',imgsrc).css('width',winWidth).css('padding-top',realh+'px');
+                }
+
+                callback&&callback();
+            }
+        }
+
+        var cid;
+
+        $('#container').hammer().on('tap',function(){
+            console.log(111);
+            // var _id = cid = $(this).attr('data-id');
+            // loadImg(_id);
+        });
+        // var lock = false;
+        // $('#large_container').hammer().on('tap',function(){
+        //     $('#container').css({height:'auto','overflow':'auto'});
+        //     $('#large_container').hide();
+        // }).on('swipeleft',function(){
+        //     if(lock) return;
+        //     cid++;
+        //     lock =true;
+        //     if(cid>total){
+        //         cid = total;
+        //     }else{
+        //         loadImg(cid,function(){
+        //             domImage.addEventListener('webkitAnimationEnd',function(){
+        //                 wImage.removeClass('animated bounceInRight');
+        //                 domImage.removeEventListener('webkitAnimationEnd');
+        //                 lock = false;
+        //             },false);
+        //             wImage.addClass('animated bounceInRight');
+        //         });
+        //     }
+
+        // }).on('swiperight',function(){
+        //     if(lock) return;
+        //     cid--;
+        //     lock =true;
+        //     if(cid>0){
+        //         loadImg(cid,function(){
+        //             //zepto没有内置动画的事件，所以要使用原生js
+        //             domImage.addEventListener('webkitAnimationEnd',function(){
+        //                 wImage.removeClass('animated bounceInLeft');
+        //                 domImage.removeEventListener('webkitAnimationEnd');
+        //                 lock = false;
+        //             },false);
+        //             wImage.addClass('animated bounceInLeft');
+        //         });
+        //     }else{
+        //         cid = 1;
+        //     }
+        // });
+
+    </script>
+</body>
+</html>

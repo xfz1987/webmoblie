@@ -1,0 +1,163 @@
+1.当用户tap一个页面元素时，iOS会在元素周围显示橙色的外框，以表明该元素被tap了
+ a,button,input.textarea{
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+ }
+
+2.部分android系统中元素被点击时产生的边框怎么去掉
+a,button,input.textarea{
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-user-modify:read-write-plaintext-only;
+}
+
+3.webkit表单元素的默认外观怎么重置
+  {-webkit-appearance:none;}
+
+4.webkit表单输入框placeholder的颜色值能改变么
+  input::-webkit-input-placeholder{color:}
+  input:focus::-webkit-input-placeholder{color:}
+
+5.关闭iOS键盘首字母自动大写
+  <input type="text" autocapitalize="off"/>
+
+6.关闭iOS输入自动修正 和英文输入默认自动首字母大写那样，IOS还做了一个功能，默认输入法会开启自动修正输入内容，这样的话，用户经常要操作两次。如果不希望开启此功能，我们可以通过input标签属性来关闭掉：
+  <input type="text" autocorrect="off"/>
+
+7.禁止文本缩放
+  当移动设备横竖屏切换时，文本的大小会重新计算，进行相应的缩放，当我们不需要这种情况时，可以选择禁止：
+   html{-webkit-text-size-adjust:100%;}
+
+8.移动端如何清除输入框内阴影
+  在iOS上，输入框默认有内部阴影，但无法使用 box-shadow 来清除，如果不需要阴影，可以这样关闭
+  input,textarea{
+    border:0;/*方法一*/
+    -webkit-appearance:none;/*方法二*/
+  }
+
+9.局部弹性滚动(ios)
+ .xxx{
+    overflow:scroll;
+    -webkit-overflow-scrolling:touch;
+ }
+
+10.禁止选中内容.
+html, body{
+    -webkit-user-select:none;
+       -moz-user-select:none;
+        -ms-user-select:none;
+}
+
+
+11.取消touch高亮效果
+  html{
+    -webkit-tap-highlight-color:rgba(0,0,0,0);
+  }
+
+12.如何禁止保存或拷贝图像（IOS）
+  通常当你在手机或者pad上长按图像 img ，会弹出选项存储图像 或者拷贝图像，如果你不想让用户这么操作，那么你可以通过以下方法来禁止：
+  img{-webkit-touch-callout:none;}
+
+13.禁用链接弹出窗口
+  a{-webkit-touch-callout:none;}
+
+14.消除transition闪屏
+ .xxx{
+    /*设置内嵌的元素在 3D 空间如何呈现：保留 3D*/
+    -webkit-transform-style:preserve-3d;
+    /*（设置进行转换的元素的背面在面对用户时是否可见：隐藏）*/
+    -webkit-backface-visibility:hidden;
+ }
+
+15.消除 IE10 里面的那个叉号
+    input:-ms-clear{display:none;}
+
+16.开启硬件加速
+.xxx{
+    -webkit-transform:translate3d(0,0,0,0);
+       -moz-transform:translate3d(0,0,0,0);
+        -ms-transform:translate3d(0,0,0,0);
+            transform:translate3d(0,0,0,0);
+}
+
+17.android 上去掉语音输入按钮
+input::-webkit-input-speech-button{display:none;}
+
+18.手机拍照和上传图片
+<input type="file" accept="image/*">
+<input type="file" accept="video/*">
+
+19.键盘定制
+   IOS基本支持  Android不同版本情况不一样
+   配置input的type属性 url tel number search
+      设置type="search" 用一个form表单包围起来，在onsubmit事件里面阻止默认行为
+      设置type="text" pattern="[0-9]*" 纯数字键盘  纯，只有数字
+      关闭首字母大写  autocapitalize="off"
+      关闭自动提示    autocorrect="off"
+
+20.解决字体在移动端比例缩小后出现锯齿的问题
+   -webkit-font-smoothing:antialiased;
+
+21.多使用 box-sizing:border-box
+
+22.动画效果中，使用 translate 比使用定位性能高
+
+23.放弃使用float,使用inline-block
+
+23.块级化a标签，因为在触控手机上，为提升用户体验，尽可能的保证用户的可点击区域较大。
+
+-------------------------js方面--------------------------------------------------------
+
+1.audio元素和video元素在ios和andriod中无法自动播放
+解决方案: 触屏即播
+$('html').one('touchstart',function(){
+   audio.play();
+});
+
+2.click300ms的延迟解决方案
+if ('ontouchstart' in window) { // mobile version
+    $(".button").bind("touchstart", handler);
+} else { // desktop version
+    $(".button").bind("click", handler); }
+
+3.禁止用户拖动页面：
+document.ontouchstart = function(e){
+    e.preventDefault();
+}
+
+
+4、如何去除iOS和Android中的输入URL的控件条 让webapp更加像nativeapp
+  setTimeout(scrollTo,0,0,0);
+  请注意，这句代码必须放在window.onload里才能够正常的工作，而且你的当前文档的内容高度必须是高于窗口的高度时，这句代码才能有效的执行
+
+5.iOS中如何获取滚动条的值
+  pc     : document.scrollTop和document.scrollLeft
+  mobile : window.scrollY和window.scrollX我们可以得到当前窗口的y轴和x轴滚动条的值
+    比如要绑定一个 touchmove 的事件，正常的情况下类似这样(来自呼吸二氧化碳)
+    $('div').on('touchmove', function(){
+       //.….code
+    });
+    而如果中间的 code 需要处理的东西多的话，FPS 就会下降影响程序顺滑度，而如果改成这样
+    $('div').on('touchmove', function(){
+       setTimeout(function(){
+         //.….code
+       },0);
+    });
+    把代码放在 setTimeout 中，会发现程序变快.
+
+
+
+6.点击态，提升用户体验
+  方法：1—使用:acive伪类
+                缺点：滚动的时候会触发样式
+        2—推荐  使用js控制
+                $el.on('tap',function(e){
+                    var $target = $(e.target);
+                    $target.addClass("active");
+
+                    setTimeout(function(){
+                      $target.removeClass('active');
+                    },150)
+                  })
+
+
+
+

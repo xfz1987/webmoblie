@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>抽奖</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name = "viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body class="lottery">
+    <div class="load">
+        <p>载入中，请稍候...</p>
+        <div class="progress"></div>
+    </div>
+
+    <div class="page">
+        <div class="pan">
+            <div id="container" class="zpan"></div>
+            <!-- 开始提示  -->
+            <div class="start-tip">
+                <span>開</span><span>始</span>
+            </div>
+        </div>
+    </div>
+    <!-- 遮罩 -->
+    <div class="mask"></div>
+    <div class="result">
+        <img src="images/xiaohua.png">
+        <h1>尊敬的客户</h1>
+        <p> 感谢您对我司活动的支持，您已获取**奖品  如需再次参与请关注我司其他活动。谢谢！</p>
+        <figure>
+            <img id="result-prize">
+            <figcaption>京东代金券</figcaption>
+        </figure>
+        <i class="close"></i>
+    </div>
+
+    <script src="js/jquery.js"></script>
+    <script src="js/adapt.js"></script>
+    <script src="js/index.js"></script>
+</body>
+</html>

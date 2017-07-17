@@ -1,0 +1,38 @@
+滚动--流畅
+   1)弹性滚动：IOS 全局滚动--默认支持
+                 局部滚动--默认没有滚动条，且滑动起来干涩
+             Android 默认没有弹性滚动
+                     -webkit-overflow-scrolling默认浏览器不支持
+     解决：IOS 局部弹性滚动
+             body{-webkit-overflow-scrolling:touch;}
+             /*局部滚动的dom节点*/
+             .scroll-el{overflow:auto;}
+             建议将属性挂在body上，子元素都会继承，避免奇怪的bug
+
+    2)IOS的出界困扰：向上拉有黑色的底板
+        什么时候会触发出界？
+          全局滚动--滚动到页面顶部(或底部)时继续向下(向上)滑动就会出现
+          局部滚动--滚动到页面顶部(或底部)时，手指离开停下，再继续向下(向上)滑动，就会出现
+
+        解决：局部滚动--使用ScrollFix
+           if(startTopScroll <= 0){elem.scrollTop = 1};
+           if(startTopScroll + elem.offsetHeight >= elem.scrollHeight){
+                elem.scrollTop = elem.scrollHeight - elem.offsetHeight -1;}
+
+            --底部有一部分固定的时候
+              页面的固定区域禁止touchmove默认事件
+
+           全局滚动--可以考虑把全局滚动改成局部滚动
+
+    3)安卓局部滚动条
+         Android下使用局部滚动，会导致滚动条显示异常，切滚动不流畅
+             建议Android下只使用全局滚动
+
+   总结滚动：
+       1.body上加上-webkit-overflow-scrolling:touch;
+       2.IOS尽量使用局部滚动
+       3.IOS引进ScrollFix避免出界
+       4.Android下尽量使用全局滚动
+         1)尽量不用overflow:auto;
+         2)使用min-height:100% 代替height:100%
+       5.IOS下带有滚动条且position:absolute的节点不要设置背景色

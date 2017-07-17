@@ -1,0 +1,51 @@
+@import url(common.less);
+
+#fruit{background:url(../images/fruit_bg1.png) no-repeat;background-size:100% 100%;}
+.flower{display:block;width: 88%;height: 5.5em;margin:.5em auto;}
+.title{position:absolute;width:78%;top:4.2em;left:0;right:0;margin:0 auto;}
+.fruit-pan{width:84.5%;height:15.5em;background:url(../images/fruit_machie.png) no-repeat;background-size:100% 100%;margin:5.5em auto 1em;position: relative;
+	p{position:absolute;font-family:"微软雅黑";font-size:1.4em;width:94%;text-align:center;left:0;top:8em;color: #d95900;font-weight: bolder;}
+    .roll{position:absolute;width:5em;height:4.9em;top:2.48em;background:-moz-linear-gradient(#ccc, #fff, #ccc);background:-webkit-linear-gradient(#ccc, #fff, #ccc);background:-webkit-linear-gradient(#ccc, #fff, #ccc);overflow:hidden;}
+    .roll_1{left:2.1em;border-top-left-radius:.5em;border-bottom-left-radius:.5em;}
+    .roll_2{width:5.4em;left:7.7em;}
+    .roll_3{width:5.4em;left:13.7em;border-top-right-radius:.5em;border-bottom-right-radius:.5em;}
+    .con{width:100%;transform:translate3d(0,0,0);-webkit-transform:translate3d(0,0,0);
+    	li{width:100%;height:4.9em;position:relative;}
+    	img{position:absolute;left:0;right:0;top:0;bottom:0;margin:auto;width:3.5em;height:3.5em;}
+    }
+
+}
+.chance-tip{width: 84.5%;font-size: .92em;color:#f35f03;height: 2.4em;line-height: 2.4em;text-align: center;background: #ffd818;border-radius: .65em;margin: 0 auto;font-weight: bolder;}
+.pazz{position:relative;width:84.5%;margin:2em auto; border-radius:.65em;color:#f35f03;background: #ffd818;padding:2.5em 0 .5em;
+	.pazz-set{position:absolute;width:45%;height:2.2em;left:0;right:0;top:0;margin:-1.1em auto 0;text-align:center;}
+	figure{float:left;width:23%;margin-left:8%;
+		img{display:block;width:100%;}
+		dt{font-size:1em;color:#f35f03;text-align:center;margin:.7em 0 .2em;}
+		dd{font-size:.6em;color:#f35f03;text-align:center;margin-bottom:.2em;}
+	}
+}
+
+.pop{position:absolute;z-index:21;width:85%;background:#fff;font-size: 1.5em;border-radius:.25em;left:50%;top:50%;-webkit-transform:translate(-50%,-50%) scale(0);transform:translate(-50%,-50%) scale(0);-webkit-transition:transform 500ms;transition:transform 500ms; 
+	h1{height:2.8em;font-weight:bolder;background:#fee150;line-height:2.8em;color:#9f5e00;text-align:center;border-top-left-radius:.25em;border-top-right-radius:.25em;}
+	p{font-size:.68em;text-align:center;margin-top: 1.5em;color:#494949;}
+	.cry{display:block;width:48%; margin:1.6em auto;}
+	button{font-size:.94em;font-family:"黑体";font-weight:bolder;width:76%;height:2.3em;color:#333;border:none;outline:none;display:block;margin:0 auto .7em;background:url(../images/popbtny.png) no-repeat;background-size:100% 100%;}
+	&.show{-webkit-transform:translate(-50%,-50%) scale(1);transform:translate(-50%,-50%) scale(1);}
+}
+
+.greate{background:transparent;
+	i{position:absolute;z-index:21;font-size:.8em;font-style:normal;width:1.2em;height:1.2em;line-height:1em;border-radius:50%;right:-.5em;top:6em;color:#fff;background:#fdd300;text-align:center;}
+	.result{position:absolute;font-size:.98em;font-weight:bolder;width:100%;text-align:center;color:#a05a00;left:0;top:4.3em;}
+	.gheader{display:block;width:100%;height:14em;}
+	.gform{background:#fff;padding-bottom:.1em;
+		label,input{display:block;width:90%;margin:0 auto;}
+		label{font-size:.6em;color:#a9a9a9;padding-top:.6em;}
+		input{font-size:.74em;padding:.6em 1em;margin-top:.28em;border:none;border-radius:.2em;color:#999;background:#f2f2f2;}
+		button{margin-top:.8em;}
+	}
+}	
+
+
+.mask{position:fixed;width:100%;height:100%;top:0;left:0;z-index:-1;background:rgba(0,0,0,.8);opacity:0;-webkit-transition:opacity 300ms ease;transition:opacity 300ms ease;
+	&.show{opacity:1;z-index:20;}
+}

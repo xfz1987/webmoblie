@@ -1,0 +1,7 @@
+*{margin:0;padding:0;}
+body{background:black;overflow:hidden;}
+ul{list-style:none;}
+.clearfix:after{display:block;content:"\20";height:0;clear:both;overflow:hidden;visibility:hidden;}/*ie8以上*/
+.img-container li{overflow:hidden;float:left;}
+.img-container li img{display:block;}
+.large{width:100%;height:100%;position:absolute;top:0;left:0;background-color:black;}

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>抽奖</title>
+	<link rel="stylesheet" href="../css/main.css">
+	<link rel="stylesheet" href="../css/tigger.css">
+</head>
+<body onselectstart="return false;">
+	<div class="page tigger">
+		<div class="container">
+			<!-- 回执信息 -->
+			<section class="front">
+				<img class="head bounceInDown" src="../images/advat.png">
+				<div class="receipt-info bounceInRight">
+					<img class="title" src="../images/title.png">
+					<ul class="info">
+						<li><span>姓名</span><input type="text" class="name" placeholder="请输入您的姓名"></li>
+						<li><span>电话</span><input type="tel" class="tel" placeholder="请输入您的手机号"></li>
+						<li><span>验证码</span><input type="text" class="code" placeholder="请输入验证码"><div class="check-code">获取验证码</div></li>
+						<li><span>寿险顾问工号</span><input type="text" class="agentno" placeholder="请输入寿险顾问工号"></li>
+					</ul>
+					<div class="btn-sure"></div>
+				</div>
+				<img class="logo" src="../images/logo.png">
+			</section>
+			<!-- 抽奖 -->
+			<section class="backface">
+				<img class="head" src="../images/advat.png">
+				<div class="machine">
+					<canvas id="tig-canvas" width="468" height="240"></canvas>
+					<div class="hot-area"></div>
+					<img class="go" src="../images/go.png">
+				</div>
+				<div class="pazz-info">
+					<ul class="thead">
+						<li>奖项等级</li><li>奖品设置</li><li>数量</li>
+					</ul>
+					<ul>
+						<li>一等奖</li><li>iphone7 Plus</li><li>30台</li>
+					</ul>
+					<ul>
+						<li>二等奖</li><li>京东卡100元</li><li>6000张</li>
+					</ul>
+					<ul>
+						<li>三等奖</li><li>华夏精品活动参与卡</li><li>10000张</li>
+					</ul>
+				</div>
+			</section>
+		</div>
+	</div>
+	<div class="maskgray"></div>
+	<div class="popalert"></div>
+	<script type="text/javascript" src="../js/jquery.min.js"></script>
+	<script type="text/javascript" src="../js/slot.js"></script>
+	<script type="text/javascript" src="../js/tigger.js"></script>
+</body>
+</html>
